@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, ReactNode, useState } from "react";
 import { StyleSheet, Text, View, Modal as DefaultModal } from "react-native";
 import PressableText from "./PressableText";
 
@@ -6,18 +6,19 @@ type ModalProps = {
   activator?: FunctionComponent<{
     handleOpen: () => void;
   }>;
+  children: ReactNode;
 };
-const Modal = ({ activator: Activator }: ModalProps) => {
+const Modal = ({ activator: Activator, children }: ModalProps) => {
   const [isModalVisible, setModalVisible] = useState(false);
   return (
     <>
       <DefaultModal
         visible={isModalVisible}
-        transparent={true}
+        // transparent={true}
         animationType="fade"
       >
         <View style={styles.centerView}>
-          <Text>Modal</Text>
+          <View style={styles.content}>{children}</View>
           <PressableText text="Close" onPress={() => setModalVisible(false)} />
         </View>
       </DefaultModal>
@@ -37,6 +38,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  content: {},
 });
 
 export default Modal;
