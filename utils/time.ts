@@ -9,7 +9,7 @@ export function formatSec(sec: number) {
   const minText = `${_min} min`;
   const secText = `${_sec} sec`;
   const connector = "and";
-
+  //
   const sentence = [];
 
   if (_min > 0) {
